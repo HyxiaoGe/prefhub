@@ -32,6 +32,9 @@ Four-layer design with optional dependencies (SQLAlchemy and FastAPI are extras,
 - **Two storage patterns**: Pattern A embeds preferences inside a broader `settings` JSONB column; Pattern B uses a dedicated table. Both expose the same `get_preferences_dict`/`set_preferences_dict` interface.
 - **Optional imports**: SQLAlchemy and FastAPI are guarded by try/except with `HAS_SQLALCHEMY`/`HAS_FASTAPI` flags so the core library works without them.
 
-## Current State
+## Downstream Projects
 
-The package structure is **not yet organized** into the intended layout. Source files (`preferences.py`, `mixins.py`, `__init__.py`) are at the repo root rather than under a `prefhub/` package directory. The service code lives under `mnt/user-data/outputs/prefhub/prefhub/services/preferences.py`. The README documents the target structure. Tests import from `prefhub.schemas` and `prefhub.services` and will not pass until the package is properly structured.
+- **idea-generator-web** — Pattern B (separate `user_settings` table), `UserPreferences` extends `BasePreferences` with `GenerationDefaults` and `ProviderPreferences`
+- **ai-audio-assistant** — Pattern A (embedded in `User.settings` JSONB), see `examples/audio_assistant_integration.py`
+
+When modifying schemas or service interfaces, check that downstream projects still import and function correctly.
