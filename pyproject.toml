@@ -1,0 +1,31 @@
+[project]
+name = "prefhub"
+version = "0.1.0"
+description = "Shared user preferences library for AI project ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "HyxiaoGe" }]
+
+dependencies = [
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+sqlalchemy = ["sqlalchemy[asyncio]>=2.0"]
+fastapi = ["fastapi>=0.100"]
+all = ["prefhub[sqlalchemy,fastapi]"]
+dev = [
+    "prefhub[all]",
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
