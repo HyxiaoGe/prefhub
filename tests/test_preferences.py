@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from prefhub.schemas import Language, Theme
-from prefhub.schemas.preferences import PreferencesUpdateRequest, UIPreferences, NotificationPreferences
+from prefhub.schemas.preferences import NotificationPreferences, PreferencesUpdateRequest, UIPreferences
 from prefhub.services.preferences import InMemoryPreferencesService, deep_merge
 
 

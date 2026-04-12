@@ -8,7 +8,7 @@ This replaces:
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -17,10 +17,6 @@ from pydantic import BaseModel, Field
 # ──────────────────────────────────────────────
 from prefhub.schemas.preferences import (
     BasePreferences,
-    NotificationPreferences,
-    PreferencesResponse,
-    PreferencesUpdateRequest,
-    UIPreferences,
 )
 from prefhub.services.preferences import PreferencesService
 
@@ -31,12 +27,12 @@ class AudioTaskDefaults(BaseModel):
     language: str = Field(default="auto", description="Transcription language")
     summary_style: str = Field(default="meeting", description="Summary style")
     enable_speaker_diarization: bool = Field(default=True)
-    enable_visual_summary: Optional[bool] = None
-    visual_types: Optional[list[str]] = None
-    asr_provider: Optional[str] = None
-    asr_variant: Optional[str] = None
-    llm_provider: Optional[str] = None
-    llm_model_id: Optional[str] = None
+    enable_visual_summary: bool | None = None
+    visual_types: list[str] | None = None
+    asr_provider: str | None = None
+    asr_variant: str | None = None
+    llm_provider: str | None = None
+    llm_model_id: str | None = None
 
 
 class AudioPreferences(BasePreferences):

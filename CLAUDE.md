@@ -32,6 +32,20 @@ Four-layer design with optional dependencies (SQLAlchemy and FastAPI are extras,
 - **Two storage patterns**: Pattern A embeds preferences inside a broader `settings` JSONB column; Pattern B uses a dedicated table. Both expose the same `get_preferences_dict`/`set_preferences_dict` interface.
 - **Optional imports**: SQLAlchemy and FastAPI are guarded by try/except with `HAS_SQLALCHEMY`/`HAS_FASTAPI` flags so the core library works without them.
 
+## Constraints
+
+- Python 3.11+, Pydantic v2
+- Ruff for linting and formatting (line-length 120)
+- SQLAlchemy and FastAPI are optional extras — core library must work without them
+- No runtime config files; all configuration via Pydantic defaults and constructor args
+- This is a library, not a service — no Dockerfile, no deployment, no CI/CD
+
+## Docs Index
+
+- `README.md` — installation, quick start, storage patterns, field reference
+- `examples/audio_assistant_integration.py` — Pattern A integration example
+- `examples/idea_generator_integration.py` — Pattern B integration example
+
 ## Downstream Projects
 
 - **idea-generator-web** — Pattern B (separate `user_settings` table), `UserPreferences` extends `BasePreferences` with `GenerationDefaults` and `ProviderPreferences`

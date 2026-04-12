@@ -15,12 +15,11 @@ Usage:
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field
 
 from . import HourCycle, Language, Theme
-
 
 # ──────────────────────────────────────────────
 # Universal preferences (every project needs these)
@@ -111,9 +110,9 @@ class PreferencesUpdateRequest(BaseModel):
     All fields are optional — only provided fields are merged.
     """
 
-    ui: Optional[UIPreferences] = None
-    notifications: Optional[NotificationPreferences] = None
-    extra: Optional[dict[str, Any]] = None
+    ui: UIPreferences | None = None
+    notifications: NotificationPreferences | None = None
+    extra: dict[str, Any] | None = None
 
 
 class PreferencesResponse(BaseModel):

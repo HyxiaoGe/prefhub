@@ -32,10 +32,7 @@ except ImportError:
 
 def _check_sqlalchemy() -> None:
     if not HAS_SQLALCHEMY:
-        raise ImportError(
-            "SQLAlchemy is required for model mixins. "
-            "Install with: pip install prefhub[sqlalchemy]"
-        )
+        raise ImportError("SQLAlchemy is required for model mixins. Install with: pip install prefhub[sqlalchemy]")
 
 
 class PreferencesEmbeddedMixin:

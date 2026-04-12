@@ -10,7 +10,7 @@ This replaces:
 from __future__ import annotations
 
 from enum import StrEnum
-from typing import Any, Optional
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -19,9 +19,6 @@ from pydantic import BaseModel, Field
 # ──────────────────────────────────────────────
 from prefhub.schemas.preferences import (
     BasePreferences,
-    PreferencesResponse,
-    PreferencesUpdateRequest,
-    UIPreferences,
 )
 from prefhub.services.preferences import PreferencesService
 
@@ -38,17 +35,17 @@ class RoutingStrategy(StrEnum):
 class GenerationDefaults(BaseModel):
     """Image generation specific defaults."""
 
-    default_aspect_ratio: Optional[str] = Field(default=None)
-    default_resolution: Optional[str] = Field(default=None)
-    default_provider: Optional[str] = Field(default=None)
-    routing_strategy: Optional[RoutingStrategy] = Field(default=None)
+    default_aspect_ratio: str | None = Field(default=None)
+    default_resolution: str | None = Field(default=None)
+    default_provider: str | None = Field(default=None)
+    routing_strategy: RoutingStrategy | None = Field(default=None)
 
 
 class ProviderPreference(BaseModel):
     provider: str
     enabled: bool = True
     priority: int = Field(default=100, ge=1)
-    max_daily_usage: Optional[int] = Field(default=None, ge=0)
+    max_daily_usage: int | None = Field(default=None, ge=0)
 
 
 class ProviderPreferences(BaseModel):

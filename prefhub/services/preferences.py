@@ -23,14 +23,10 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any, TypeVar
 
-from pydantic import BaseModel
-
 from prefhub.schemas.preferences import (
     BasePreferences,
-    NotificationPreferences,
     PreferencesResponse,
     PreferencesUpdateRequest,
-    UIPreferences,
 )
 
 T = TypeVar("T", bound=BasePreferences)
@@ -76,9 +72,7 @@ class PreferencesService(ABC):
             extra=prefs.extra,
         )
 
-    async def update(
-        self, user_id: str, request: PreferencesUpdateRequest
-    ) -> PreferencesResponse:
+    async def update(self, user_id: str, request: PreferencesUpdateRequest) -> PreferencesResponse:
         """
         Merge-update preferences. Only provided fields are changed.
         This is the core logic that every project repeats — now centralized.

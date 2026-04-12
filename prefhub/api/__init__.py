@@ -18,7 +18,8 @@ Usage:
 
 from __future__ import annotations
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 try:
     from fastapi import APIRouter, Depends
@@ -50,10 +51,7 @@ def create_preferences_router(
         FastAPI APIRouter with GET, PATCH, DELETE /preferences endpoints.
     """
     if not HAS_FASTAPI:
-        raise ImportError(
-            "FastAPI is required for the router factory. "
-            "Install with: pip install prefhub[fastapi]"
-        )
+        raise ImportError("FastAPI is required for the router factory. Install with: pip install prefhub[fastapi]")
 
     router = APIRouter(prefix=prefix, tags=tags or ["preferences"])
 
